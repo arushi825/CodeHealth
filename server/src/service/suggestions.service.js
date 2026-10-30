@@ -45,10 +45,13 @@ export const generateSuggestions = (repoPath, techStack, issues) => {
   }
 
   const hasLintErrors = issues.critical.some((i) => /lint error/i.test(i));
-  const hasLintWarnings = issues.warnings.some((i) => /lint warning/i.test(i));
-  if (hasLintErrors || hasLintWarnings) {
-    suggestions.push("Address lint errors to improve code quality");
-  }
+const hasLintWarnings = issues.warnings.some((i) => /lint warning/i.test(i));
+
+if (hasLintErrors) {
+  suggestions.push("Address lint errors to improve code quality");
+} else if (hasLintWarnings) {
+  suggestions.push("Review lint warnings to improve code quality");
+}
 
   return suggestions.slice(0, 8);
 };

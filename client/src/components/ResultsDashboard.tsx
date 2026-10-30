@@ -109,6 +109,56 @@ export default function ResultsDashboard({
           </Card>
           <Card delay={200}>
             <LintResultsTable lintResults={result.lintResults} />
+            {result.dependencyVersionIssues &&
+  result.dependencyVersionIssues.length > 0 && (
+    <Card delay={300}>
+      <div>
+        <h2 className="text-lg font-semibold text-cop-text mb-3">
+          Dependency Version Issues
+        </h2>
+
+        <div className="space-y-4">
+          {result.dependencyVersionIssues.map((issue, index) => (
+            <div
+              key={`${issue.package}-${index}`}
+              className="border border-cop-border rounded-lg p-4"
+            >
+              <div className="flex items-center justify-between gap-3 mb-2">
+                <h3 className="font-medium text-cop-text">
+                  {issue.package}
+                </h3>
+
+                <span className="text-xs px-2 py-1 rounded-md border border-cop-border text-cop-muted">
+                  {issue.dependencyType}
+                </span>
+              </div>
+
+              <p className="text-sm text-cop-subtext mb-2">
+                Declared version:{" "}
+                <span className="font-mono text-cop-text">
+                  {issue.declaredVersion}
+                </span>
+              </p>
+
+              <p className="text-sm text-cop-subtext mb-2">
+                {issue.explanation}
+              </p>
+
+              <p className="text-sm text-cop-muted mb-2">
+                <strong>Likely cause:</strong>{" "}
+                {issue.probableRootCause}
+              </p>
+
+              <p className="text-sm text-cop-muted">
+                <strong>Suggested solution:</strong>{" "}
+                {issue.suggestedSolution}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Card>
+  )}
           </Card>
         </div>
         <div className="space-y-6">

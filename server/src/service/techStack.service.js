@@ -202,6 +202,7 @@ export const detectTechStack = (repoPath) => {
   const hasDocker = detectDocker(repoPath);
   const hasCI = detectCI(repoPath);
   const hasTesting = detectTesting(repoPath);
+  
 
   console.log(`[TechStack] Languages: ${languages.join(", ") || "none"}`);
   console.log(`[TechStack] Frameworks: ${frameworks.join(", ") || "none"}`);

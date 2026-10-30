@@ -37,6 +37,17 @@ export interface RepoStats {
   totalSize: number;
 }
 
+export interface DependencyVersionIssue {
+  category: "Dependency Version";
+  package: string;
+  declaredVersion: string;
+  dependencyType: string;
+  severity: "warning";
+  explanation: string;
+  probableRootCause: string;
+  suggestedSolution: string;
+}
+
 export interface EvaluationResult {
   score: number;
   status: "Clean" | "Needs Improvement" | "Risky Code";
@@ -45,6 +56,8 @@ export interface EvaluationResult {
   suggestions: string[];
   lintResults: LintResult[];
   repoStats: RepoStats;
+  missingDependencies?: unknown[];
+  dependencyVersionIssues?: DependencyVersionIssue[];
 }
 
 export interface APIResponse {

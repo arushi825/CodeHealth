@@ -82,7 +82,7 @@ function downloadMarkdown(lintResults: LintResult[]) {
 function IssueRow({ issue }: { issue: LintIssue }) {
   return (
     <tr className="border-b border-cop-border/30">
-      <td className="py-1.5 pr-3 font-mono text-xs text-cop-subtext truncate max-w-[200px]">
+      <td className="py-1.5 pr-3 font-mono text-xs text-cop-subtext truncate max-w-50">
         {issue.file}
       </td>
       <td className="py-1.5 pr-3 font-mono text-xs text-cop-muted whitespace-nowrap">

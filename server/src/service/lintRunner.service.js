@@ -32,7 +32,7 @@ const LINTER_REGISTRY = {
 };
 
 // JavaScript is handled by the ESLint integration in lint.service.js
-const ESLINT_LANGUAGES = new Set(["JavaScript"]);
+const ESLINT_LANGUAGES = new Set(["JavaScript", "TypeScript"]);
 
 /**
  * Run linters sequentially for detected languages.

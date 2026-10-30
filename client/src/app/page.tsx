@@ -229,6 +229,12 @@ export default function LandingPage() {
                     &rarr;
                   </span>
                 </Link>
+                <a
+  href="vscode://code-cop.code-cop/connect"
+  className="px-8 py-3.5 rounded-lg font-medium border border-cop-border text-cop-subtext hover:bg-cop-elevated hover:text-cop-text transition-colors text-base"
+>
+  Connect VS Code Project
+</a>
                 {!isAuthenticated && (
                   <button
                     onClick={login}

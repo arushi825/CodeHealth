@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { analyzeLocalProject } from './analyzer/index.js';
 const codeCopOutput = vscode.window.createOutputChannel('Code-Cop');
 export function activate(context: vscode.ExtensionContext) {
 	const diagnostics = vscode.languages.createDiagnosticCollection('code-cop');
@@ -17,6 +18,10 @@ export function activate(context: vscode.ExtensionContext) {
             }
 
             const workspacePath = workspaceFolders[0].uri.fsPath;
+console.log(
+    '[DEBUG] Current VS Code workspace:',
+    workspaceFolders.map(folder => folder.uri.fsPath)
+);
 
             await analyzeWorkspace(workspacePath, diagnostics);
         }
@@ -79,36 +84,14 @@ async function analyzeWorkspace(
     diagnostics: vscode.DiagnosticCollection
 ) {
     try {
-        console.log('Code-Cop: Sending workspace to local analyzer...');
+        console.log('Code-Cop: Starting local analysis...');
 
-        const response = await fetch(
-            'http://localhost:5000/evaluate-local',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    projectPath: workspacePath,
-                }),
-            }
-        );
+        const result: any = await analyzeLocalProject(workspacePath);
 
-        const data: any = await response.json();
+        codeCopOutput.clear();
 
-        if (!response.ok) {
-            throw new Error(
-                data.message || 'Local analysis failed'
-            );
-        }
-
-        console.log('Code-Cop: Local analysis completed.');
-        console.log(
-            'Code-Cop result:',
-            JSON.stringify(data, null, 2)
-        );
-
-        const result = data.result;
+        codeCopOutput.appendLine('CODE-COP ANALYSIS');
+        codeCopOutput.appendLine('=================');
         codeCopOutput.clear();
 
 codeCopOutput.appendLine('CODE-COP ANALYSIS');

@@ -4,6 +4,7 @@
   "publisher": "code-cop",
   "description": "Code-Cop local project analyzer",
   "version": "0.0.1",
+  "type": "module",
   "engines": {
     "vscode": "^1.136.0"
   },
@@ -11,20 +12,20 @@
     "Other"
   ],
   "activationEvents": [
-     "onStartupFinished",
-     "onUri"
+    "onStartupFinished",
+    "onUri"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "code-cop.analyzeCurrentProject",
-    "title": "Code-Cop: Analyze Current Project"
+        "title": "Code-Cop: Analyze Current Project"
       },
       {
-      "command": "code-cop.reanalyzeCurrentProject",
-      "title": "Code-Cop: Re-analyze Current Project"
-    }
+        "command": "code-cop.reanalyzeCurrentProject",
+        "title": "Code-Cop: Re-analyze Current Project"
+      }
     ]
   },
   "scripts": {
@@ -36,17 +37,21 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.136.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "24.x",
-    "typescript-eslint": "^8.61.1",
-    "eslint": "^10.5.0",
-    "typescript": "^6.0.3",
+    "@types/vscode": "^1.136.0",
     "@vscode/test-cli": "^0.0.15",
-    "@vscode/test-electron": "^3.0.0"
+    "@vscode/test-electron": "^3.0.0",
+    "eslint": "^10.2.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.1"
   },
   "overrides": {
     "diff": "^8.0.4",
     "serialize-javascript": "^7.0.6"
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.69.0",
+    "@typescript-eslint/parser": "^8.69.0"
   }
 }

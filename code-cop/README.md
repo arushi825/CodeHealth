@@ -1,71 +1,61 @@
-# code-cop README
+# Code-Cop
 
-This is the README for your extension "code-cop". After writing up a brief description, we recommend including the following sections.
+Code-Cop is a Visual Studio Code extension that connects your local
+project to the Code-Cop code quality analysis platform.
+
+It helps developers inspect their projects and view code quality
+findings directly inside Visual Studio Code.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Connects the currently opened VS Code workspace to the Code-Cop backend.
+- Analyses the selected workspace using the Code-Cop evaluation pipeline.
+- Displays analysis results in the Code-Cop Output Channel.
+- Shows supported code diagnostics in the VS Code Problems panel.
+- Provides a command to reanalyse the current project.
 
-For example if there is an image subfolder under your extension project workspace:
+## How to Use
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+1. Open a project folder in Visual Studio Code.
+2. Ensure the Code-Cop backend server is running.
+3. Run the Code-Cop connect command from the Command Palette.
+4. Allow the extension to send the workspace path for analysis.
+5. View the results in the Code-Cop Output Channel.
+6. Check the Problems panel for supported diagnostics.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- Visual Studio Code
+- Node.js
+- Code-Cop backend server running and accessible
+- An opened project folder in VS Code
 
-## Extension Settings
+## Output
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Code-Cop provides:
+- Project analysis results.
+- Code quality findings.
+- Supported diagnostics in the Problems panel.
+- Analysis information in the Output Channel.
 
-For example:
+## Known Limitations
 
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- The extension currently analyses the first workspace folder.
+- Analysis depends on the availability of the Code-Cop backend.
+- Findings depend on the supported static analysis checks.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
+Initial development release of the Code-Cop VS Code extension.
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+- Added local workspace connection.
+- Added project analysis command.
+- Added reanalysis command.
+- Added Output Channel integration.
+- Added VS Code Problems panel integration.
 
 ---
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**Code-Cop — Inspect your code before it ships.**

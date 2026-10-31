@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useAuth } from "../lib/auth-context";
+import { useState } from "react";
 
 const SUPPORTED_LANGUAGES = [
   {
@@ -142,6 +143,7 @@ const FEATURES = [
 
 export default function LandingPage() {
   const { isAuthenticated, login } = useAuth();
+  const [isVsCodeModalOpen, setIsVsCodeModalOpen] = useState(false);
 
   return (
     <main className="min-h-screen flex flex-col">
@@ -229,12 +231,13 @@ export default function LandingPage() {
                     &rarr;
                   </span>
                 </Link>
-                <a
-  href="vscode://code-cop.code-cop/connect"
+                <button
+  type="button"
+  onClick={() => setIsVsCodeModalOpen(true)}
   className="px-8 py-3.5 rounded-lg font-medium border border-cop-border text-cop-subtext hover:bg-cop-elevated hover:text-cop-text transition-colors text-base"
 >
   Connect VS Code Project
-</a>
+</button>
                 {!isAuthenticated && (
                   <button
                     onClick={login}
@@ -517,6 +520,54 @@ export default function LandingPage() {
           </p>
         </div>
       </footer>
+      {isVsCodeModalOpen && (
+ <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div className="w-full max-w-md rounded-2xl border border-gray-700 bg-[#111827] p-7 shadow-2xl">
+      <h2 className="text-xl font-semibold text-cop-text">
+        Connect your VS Code project
+      </h2>
+
+      <p className="mt-3 text-sm leading-6 text-cop-subtext">
+        Before connecting, make sure the Code-Cop extension is installed in
+        VS Code.
+      </p>
+
+      <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm text-cop-subtext">
+        <li>Download the Code-Cop extension from the Releases page.</li>
+        <li>Install the VSIX file in VS Code using Extensions: Install from VSIX.</li>
+        <li>Open the project folder you want Code-Cop to analyze.</li>
+        <li>Click the button below to continue connecting.</li>
+      </ol>
+
+      <a
+        href="https://github.com/syedkumailraza2/Code-Cop/releases"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-5 inline-block text-sm font-medium text-cop-accent underline"
+      >
+        Download Code-Cop Extension
+      </a>
+
+      <div className="mt-6 flex justify-end gap-3">
+        <button
+          type="button"
+          onClick={() => setIsVsCodeModalOpen(false)}
+          className="rounded-lg border border-cop-border px-4 py-2 text-sm text-cop-subtext hover:bg-cop-elevated"
+        >
+          Cancel
+        </button>
+
+        <a
+          href="vscode://code-cop.code-cop/connect"
+          onClick={() => setIsVsCodeModalOpen(false)}
+          className="rounded-lg bg-cop-accent px-4 py-2 text-sm font-medium text-white hover:opacity-90"
+        >
+          Okay, Open VS Code
+        </a>
+      </div>
+    </div>
+  </div>
+)}
     </main>
   );
 }

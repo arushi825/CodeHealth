@@ -147,10 +147,18 @@ function ResultsContent() {
     };
   }, [url]);
 
-  useEffect(() => {
-    const cleanup = runAnalysis();
-    return cleanup;
-  }, [runAnalysis]);
+ useEffect(() => {
+  let cleanup: (() => void) | undefined;
+
+  const timer = window.setTimeout(() => {
+    cleanup = runAnalysis();
+  }, 0);
+
+  return () => {
+    window.clearTimeout(timer);
+    cleanup?.();
+  };
+}, [runAnalysis]);
 
   if (pageState === "loading") {
     return <LoadingOverlay />;

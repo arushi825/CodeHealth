@@ -1,7 +1,6 @@
 import express from 'express';
 import rateLimit, { ipKeyGenerator } from 'express-rate-limit';
 import Evaluation from '../controller/evaluator.controller.js';
-import LocalEvaluation from '../controller/localEvaluator.controller.js';
 import submitFeedback from '../controller/feedback.controller.js';
 import { optionalAuth } from '../middleware/auth.middleware.js';
 
@@ -29,7 +28,7 @@ const evaluatorRouter = express.Router();
 
 // optionalAuth runs before rate limiter so we can key by userId
 evaluatorRouter.post('/evaluate', optionalAuth, evaluateLimiter, Evaluation);
-evaluatorRouter.post('/evaluate-local', LocalEvaluation);
+
 evaluatorRouter.post('/feedback', feedbackLimiter, submitFeedback);
 
 export default evaluatorRouter;

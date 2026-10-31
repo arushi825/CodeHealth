@@ -1,9 +1,9 @@
-import { evaluateProject } from "./service/evaluator.service.js";
+import { evaluateProject } from "../service/evaluator.service.js";
 
 import {
     readNodeDependencies,
     findUninstalledDependencies,
-} from "./service/dependency.service.js";
+} from "../service/dependency.service.js";
 
 
 export const analyzeLocalProject = async (projectPath) => {

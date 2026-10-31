@@ -213,8 +213,8 @@ Optional (for full multi-language linting):
    Create a `.env` file:
 
    ```env
-   PORT=8000
-   MONGO_URL=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/codecop
+   PORT=5000
+   MONGO_URL=mongodb+srv://<USERNAME>:<ENCODED_PASSWORD>@<CLUSTER_HOST>/codecop
    ```
 
 3. **Set up the frontend**
@@ -227,7 +227,7 @@ Optional (for full multi-language linting):
    Create a `.env` file:
 
    ```env
-   NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/
+   NEXT_PUBLIC_API_BASE_URL=http://localhost:5000
    ```
 
 4. **Start both servers**
